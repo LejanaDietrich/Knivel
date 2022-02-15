@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class GamePage implements OnInit {
 
   isRunning: boolean;
-  players: any[];
 
   /*fields: {
     ones: {
@@ -81,16 +80,39 @@ export class GamePage implements OnInit {
   } [];*/
 
   fields: Fields[] = [];
+  players: string[] = [];
 
   constructor() { }
 
   ngOnInit() {
-    this.fields.push(new Fields())
+    this.addPlayer();
+    this.addPlayer()
+    console.log(this.fields[0]);
   }
 
   addPlayer(){
     if(!this.isRunning){
       this.fields.push(new Fields());
+      this.players.push(`Player ${this.players.length + 1}`)
+    }
+  }
+
+  removePlayer(indexP){
+    this.fields.splice(indexP, 1);
+  }
+
+  reset(){
+    this.fields = [];
+    this.players = [];
+    this.addPlayer();
+    this.addPlayer();
+  }
+
+  rematch(){
+    for(let fieldsP of this.fields){
+      for(let key in fieldsP){
+        fieldsP[key].value = undefined;
+      }
     }
   }
 
@@ -119,9 +141,17 @@ class Fields {
     value: number | undefined,
     icon: ''
     description: "1er",
+  } = {
+    value: 3,
+    icon: '',
+    description: "1er"
   };
   twos: {
     value: number | undefined,
+    icon: '',
+    description: "2er"
+  } = {
+    value: undefined,
     icon: '',
     description: "2er"
   };
@@ -129,9 +159,17 @@ class Fields {
     value: number | undefined,
     icon: '',
     description: "3er"
+  } = {
+    value: undefined,
+    icon: '',
+    description: "3er"
   };
   fours: {
     value: number | undefined,
+    icon: '',
+    description: "4er"
+  } = {
+    value: undefined,
     icon: '',
     description: "4er"
   };
@@ -139,9 +177,17 @@ class Fields {
     value: number | undefined,
     icon: '',
     description: "5er"
+  } = {
+    value: undefined,
+    icon: '',
+    description: "5er"
   };
   sixes: {
     value: number | undefined,
+    icon: '',
+    description: "6er"
+  } = {
+    value: undefined,
     icon: '',
     description: "6er"
   };
@@ -149,53 +195,92 @@ class Fields {
     value: number | undefined,
     icon: '',
     description: "Gesamt"
+  } = {
+    value: undefined,
+    icon: '',
+    description: "Gesamt"
   };
   bonus: {
     value: 0 | 35 | undefined,
+    description: "Bonus (35P)"
+  } = {
+    value: undefined,
     description: "Bonus (35P)"
   };
   sum1: {
     value: number | undefined,
     description: "Summe 1"
+  } = {
+    value: undefined,
+    description: "Summe 1" 
   };
   threeAKind: {
     value: number | undefined,
+    description: "Dreierpasch"
+  } = {
+    value: undefined,
     description: "Dreierpasch"
   };
   fourAKind: {
     value: number | undefined,
     description: "Dreierpasch"
+  } = {
+    value: undefined,
+    description: "Dreierpasch"
   };
   fullHouse: {
     value: 0 | 25 | undefined,
+    description: "Full House (25P)"
+  } = {
+    value: undefined,
     description: "Full House (25P)"
   };
   flush: {
     value: 0 | 30 | undefined,
     description: "kleine Straße (30P)"
+  } = {
+    value: undefined,
+    description: "kleine Straße (30P)"
   };
   straightFlush: {
     value: 0 | 40 | undefined,
+    description: "große Straße (40P)"
+  } = {
+    value: undefined,
     description: "große Straße (40P)"
   };
   knivel: {
     value: 0 | 50 | undefined,
     description: "Knivel (50P)"
+  } = {
+    value: undefined,
+    description: "Knivel (50P)"
   };
   chance: {
     value: number | undefined, 
+    description: "Chance"
+  } = {
+    value: undefined, 
     description: "Chance"
   };
   sum2: {
     value: number | undefined, 
     description: "Summe 2"
+  } = {
+    value: undefined, 
+    description: "Summe 2"
   };
   total: {
     value: number | undefined, 
     description: "Gesamt"
+  } = {
+    value: undefined, 
+    description: "Gesamt"
   }
   
-  constructor() { }
+  constructor() { 
+    //this.ones.value = undefined;
+  }
 }
 
 /*

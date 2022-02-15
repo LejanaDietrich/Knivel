@@ -1,19 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>game</ion-title>
+    <ion-title>Knivel</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-col *ngIf="fields[0]" class="descriptions">
-      <ion-row *ngFor="let item of fields[0]  | keyvalue">
-        {{item.description}}
-      </ion-row>
+  <ion-grid lines="full">
+    <ion-row>  
+      <ion-col>...</ion-col>    
+      <ion-col *ngFor="let player of players; let indexP = index;">
+      <ion-input [value]="player" type="string"></ion-input>
     </ion-col>
-    <ion-col *ngFor="let player of fields | keyvalue; let indexP = index;">
-      <ion-row></ion-row>
+  </ion-row>
+    <ion-row *ngFor="let item of fields[0]  | keyvalue">
+      <ion-col>
+        {{item.value.description}}
+      </ion-col>
+      <ion-col *ngFor="let player of fields; let indexP = index;">
+        <ion-input value="fields[0][item.key].value" type="number"></ion-input>
+      </ion-col>
+    </ion-row>
 
-    </ion-col>
+
   </ion-grid>
 </ion-content>
