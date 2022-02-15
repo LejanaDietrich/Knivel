@@ -12,12 +12,12 @@
       <ion-input [value]="player" type="string"></ion-input>
     </ion-col>
   </ion-row>
-    <ion-row *ngFor="let item of fields[0]  | keyvalue">
+    <ion-row *ngFor="let item of fields[0].fields">
       <ion-col>
-        {{item.value.description}}
+        {{item.description}}
       </ion-col>
       <ion-col *ngFor="let player of fields; let indexP = index;">
-        <ion-input value="fields[0][item.key].value" type="number"></ion-input>
+        <ion-input value="fields[indexP][item.key].value" type="number"></ion-input>
       </ion-col>
     </ion-row>
 

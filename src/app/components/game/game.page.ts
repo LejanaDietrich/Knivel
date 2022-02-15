@@ -102,6 +102,7 @@ export class GamePage implements OnInit {
   }
 
   reset(){
+    this.isRunning = false;
     this.fields = [];
     this.players = [];
     this.addPlayer();
@@ -109,6 +110,7 @@ export class GamePage implements OnInit {
   }
 
   rematch(){
+    this.isRunning = false;
     for(let fieldsP of this.fields){
       for(let key in fieldsP){
         fieldsP[key].value = undefined;
@@ -133,10 +135,15 @@ export class GamePage implements OnInit {
     fieldsP["sum2"].value = fieldsP['threeAKind'].value + fieldsP['fourAKind'].value + fieldsP['fullHouse'].value + fieldsP['flush'].value + fieldsP['straightFlush'].value + fieldsP['knivel'].value + fieldsP['chance'].value;
     fieldsP["total"].value = fieldsP["sum1"].value + fieldsP["sum2"].value;
   }
+
+  calculate(){
+    for(let i = 0; i < this.players.length; i++){
+      this.calculateForPlayer(i);
+    }
+  }
 }
 
 class Fields {
-  
   ones: {
     value: number | undefined,
     icon: ''
@@ -277,6 +284,11 @@ class Fields {
     value: undefined, 
     description: "Gesamt"
   }
+
+  fields: any[] = [
+  this.ones, this.twos, this.threes, this.fours, this.fives, this.sixes, this.numbersTotal, this.bonus, this.sum1,
+  this.threeAKind, this.fourAKind, this.fullHouse, this.flush, this.straightFlush, this.knivel, this.chance, this.sum2, this.total
+  ]
   
   constructor() { 
     //this.ones.value = undefined;
