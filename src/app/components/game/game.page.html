@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>game</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-col *ngIf="fields[0]" class="descriptions">
+      <ion-row *ngFor="let item of fields[0]  | keyvalue">
+        {{item.description}}
+      </ion-row>
+    </ion-col>
+    <ion-col *ngFor="let player of fields | keyvalue; let indexP = index;">
+      <ion-row></ion-row>
+
+    </ion-col>
+  </ion-grid>
+</ion-content>
