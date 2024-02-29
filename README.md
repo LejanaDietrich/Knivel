@@ -1,1 +1,1 @@
-TS implementation ofwell known dice game
+TS implementation of well known dice game
